@@ -2,7 +2,7 @@ all: mesh
 
 clean: clean-mesh
 
-mesh: decomposePar
+mesh: snappyHexMesh
 
 surfaceFeatureExtract:
 	cp geometry/nose.stl constant/triSurface/
@@ -14,7 +14,11 @@ blockMesh: surfaceFeatureExtract
 decomposePar: blockMesh
 	decomposePar > log.decomposePar
 
-clean-mesh: clean-surfaceFeature clean-blockMesh clean-decomposePar
+snappyHexMesh: decomposePar
+	mpirun -np 2 snappyHexMesh -parallel < /dev/null > log.snappyHexMesh
+
+
+clean-mesh: clean-surfaceFeature clean-blockMesh clean-decomposePar clean-log
 
 clean-surfaceFeature:
 	rm -rf constant/extendedFeatureEdgeMesh
@@ -30,3 +34,6 @@ clean-blockMesh:
 
 clean-decomposePar:
 	rm -rf processor*
+
+clean-log:
+	rm -f log.*
