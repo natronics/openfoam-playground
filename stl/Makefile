@@ -2,10 +2,11 @@ all: mesh
 
 clean: clean-mesh
 
+mesh: surfaceFeatureExtract
 
-mesh:
+surfaceFeatureExtract:
 	cp geometry/nose.stl constant/triSurface/
-	surfaceFeatureExtract
+	surfaceFeatureExtract > log.surfaceFeatureExtract
 
 
 clean-mesh:
