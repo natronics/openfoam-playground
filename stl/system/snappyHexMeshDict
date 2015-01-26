@@ -28,10 +28,10 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    nose.stl
+    rocket.stl
     {
         type triSurfaceMesh;
-        name nose;
+        name rocket;
     }
 
     refinementBox
@@ -54,14 +54,14 @@ castellatedMeshControls
     // If local number of cells is >= maxLocalCells on any processor
     // switches from from refinement followed by balancing
     // (current method) to (weighted) balancing before refinement.
-    maxLocalCells 100000;
+    maxLocalCells 10000;
 
     // Overall cell limit (approximately). Refinement will stop immediately
     // upon reaching this number so a refinement level might not complete.
     // Note that this is the number of cells before removing the part which
     // is not 'visible' from the keepPoint. The final number of cells might
     // actually be a lot less.
-    maxGlobalCells 2000000;
+    maxGlobalCells 200000;
 
     // The surface refinement loop might spend lots of iterations refining just a
     // few cells. This setting will cause refinement to stop if <= minimumRefine
@@ -91,8 +91,8 @@ castellatedMeshControls
     features
     (
         {
-            file "nose.eMesh";
-            level 6;
+            file "rocket.eMesh";
+            level 5;
         }
     );
 
@@ -109,17 +109,17 @@ castellatedMeshControls
 
     refinementSurfaces
     {
-        nose
+        rocket
         {
             // Surface-wise min and max refinement level
-            level (5 6);
+            level (4 5);
 
             // Optional specification of patch type (default is wall). No
             // constraint types (cyclic, symmetry) etc. are allowed.
             patchInfo
             {
                 type wall;
-                inGroups (BikeGroup);
+                inGroups (RocketGroup);
             }
         }
     }
@@ -218,7 +218,7 @@ addLayersControls
     // Per final patch (so not geometry!) the layer information
     layers
     {
-        "(lowerWall|nose).*"
+        "(lowerWall|rocket).*"
         {
             nSurfaceLayers 1;
         }

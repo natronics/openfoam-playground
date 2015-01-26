@@ -1,24 +1,35 @@
-all: mesh
+all: log.sonicFoam
 
-clean: clean-mesh
+clean: clean-mesh clean-log
 
-mesh: snappyHexMesh
 
-surfaceFeatureExtract:
-	cp geometry/nose.stl constant/triSurface/
+################################################################################
+# Mesh:
+mesh: log.patchSummary
+
+log.surfaceFeatureExtract:
+	cp geometry/rocket.stl constant/triSurface/
 	surfaceFeatureExtract > log.surfaceFeatureExtract
 
-blockMesh: surfaceFeatureExtract
+log.blockMesh: log.surfaceFeatureExtract
 	blockMesh > log.blockMesh
 
-decomposePar: blockMesh
-	decomposePar > log.decomposePar
+log.snappyHexMesh: log.blockMesh
+	snappyHexMesh > log.snappyHexMesh
 
-snappyHexMesh: decomposePar
-	mpirun -np 2 snappyHexMesh -parallel < /dev/null > log.snappyHexMesh
+log.patchSummary: log.snappyHexMesh
+	patchSummary > log.patchSummary
 
 
-clean-mesh: clean-surfaceFeature clean-blockMesh clean-decomposePar clean-log
+################################################################################
+# Compute
+log.sonicFoam: mesh
+	sonicFoam > log.sonicFoam
+
+
+################################################################################
+# Cleaning:
+clean-mesh: clean-surfaceFeature clean-blockMesh clean-decomposePar
 
 clean-surfaceFeature:
 	rm -rf constant/extendedFeatureEdgeMesh
@@ -31,9 +42,6 @@ clean-blockMesh:
 	rm -f constant/polyMesh/owner
 	rm -f constant/polyMesh/points
 	rm -f constant/polyMesh/neighbour
-
-clean-decomposePar:
-	rm -rf processor*
 
 clean-log:
 	rm -f log.*
