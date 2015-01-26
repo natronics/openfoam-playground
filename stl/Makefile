@@ -46,6 +46,11 @@ clean-blockMesh:
 	rm -f constant/polyMesh/point*
 	rm -f constant/polyMesh/refinementHistory
 	rm -f constant/polyMesh/surfaceIndex
+	rm -rf constant/polyMesh/sets
+	rm -f 0/cellLevel
+	rm -f 0/pointLevel
+	rm -f 0/nSurfaceLayers
+	rm -f 0/thickness*
 
 clean-foam:
 	rm -rf postProcessing/
