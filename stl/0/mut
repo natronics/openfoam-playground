@@ -31,11 +31,11 @@ boundaryField
         type            calculated;
         value           uniform 0;
     }
-    upperwall
+    upperWall
     {
         type            empty;
     }
-    lowerwall
+    lowerWall
     {
         type            empty;
     }

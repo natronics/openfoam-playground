@@ -5,7 +5,7 @@ clean: clean-mesh clean-log
 
 ################################################################################
 # Mesh:
-mesh: log.patchSummary
+mesh: log.snappyHexMesh
 
 log.surfaceFeatureExtract:
 	cp geometry/rocket.stl constant/triSurface/
@@ -17,8 +17,8 @@ log.blockMesh: log.surfaceFeatureExtract
 log.snappyHexMesh: log.blockMesh
 	snappyHexMesh > log.snappyHexMesh
 
-log.patchSummary: log.snappyHexMesh
-	patchSummary > log.patchSummary
+#log.patchSummary: log.snappyHexMesh
+#	patchSummary > log.patchSummary
 
 
 ################################################################################
@@ -29,7 +29,7 @@ log.sonicFoam: mesh
 
 ################################################################################
 # Cleaning:
-clean-mesh: clean-surfaceFeature clean-blockMesh clean-decomposePar
+clean-mesh: clean-surfaceFeature clean-blockMesh
 
 clean-surfaceFeature:
 	rm -rf constant/extendedFeatureEdgeMesh

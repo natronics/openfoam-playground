@@ -37,11 +37,11 @@ boundaryField
         lInf            1;
         value           uniform 100000;
     }
-    upperwall
+    upperWall
     {
         type            empty;
     }
-    lowerwall
+    lowerWall
     {
         type            empty;
     }

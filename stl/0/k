@@ -33,11 +33,11 @@ boundaryField
         inletValue      uniform 1000;
         value           uniform 1000;
     }
-    upperwall
+    upperWall
     {
         type            empty;
     }
-    lowerwall
+    lowerWall
     {
         type            empty;
     }
