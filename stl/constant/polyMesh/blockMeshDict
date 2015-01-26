@@ -67,7 +67,7 @@ boundary
     }
     lowerWall
     {
-        type wall;
+        type patch;
         faces
         (
             (0 3 2 1)
