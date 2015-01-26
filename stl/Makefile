@@ -1,6 +1,6 @@
 all: log.sonicFoam
 
-clean: clean-mesh clean-log
+clean: clean-mesh clean-foam clean-log
 
 
 ################################################################################
@@ -15,7 +15,7 @@ log.blockMesh: log.surfaceFeatureExtract
 	blockMesh > log.blockMesh
 
 log.snappyHexMesh: log.blockMesh
-	snappyHexMesh > log.snappyHexMesh
+	snappyHexMesh -overwrite > log.snappyHexMesh
 
 #log.patchSummary: log.snappyHexMesh
 #	patchSummary > log.patchSummary
@@ -38,10 +38,17 @@ clean-surfaceFeature:
 
 clean-blockMesh:
 	rm -f constant/polyMesh/boundary
-	rm -f constant/polyMesh/faces
 	rm -f constant/polyMesh/owner
-	rm -f constant/polyMesh/points
 	rm -f constant/polyMesh/neighbour
+	rm -f constant/polyMesh/cell*
+	rm -f constant/polyMesh/face*
+	rm -f constant/polyMesh/level*
+	rm -f constant/polyMesh/point*
+	rm -f constant/polyMesh/refinementHistory
+	rm -f constant/polyMesh/surfaceIndex
+
+clean-foam:
+	rm -rf postProcessing/
 
 clean-log:
 	rm -f log.*
