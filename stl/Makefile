@@ -54,6 +54,7 @@ clean-blockMesh:
 
 clean-foam:
 	rm -rf postProcessing/
+	rm -rf 0.*
 
 clean-log:
 	rm -f log.*
