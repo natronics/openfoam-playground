@@ -92,7 +92,7 @@ castellatedMeshControls
     (
         {
             file "rocket.eMesh";
-            level 6;
+            level 7;
         }
     );
 
@@ -112,7 +112,7 @@ castellatedMeshControls
         rocket
         {
             // Surface-wise min and max refinement level
-            level (5 6);
+            level (6 7);
 
             // Optional specification of patch type (default is wall). No
             // constraint types (cyclic, symmetry) etc. are allowed.
