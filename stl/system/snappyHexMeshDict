@@ -16,8 +16,8 @@ FoamFile
 
 // Which of the steps to run
 castellatedMesh true;
-snap            false;
-addLayers       true;
+snap            true;
+addLayers       false;
 
 
 // Geometry. Definition of all surfaces. All surfaces are of class
@@ -79,7 +79,7 @@ castellatedMeshControls
     // Number of buffer layers between different levels.
     // 1 means normal 2:1 refinement restriction, larger means slower
     // refinement.
-    nCellsBetweenLevels 3;
+    nCellsBetweenLevels 2;
 
 
 
@@ -92,7 +92,7 @@ castellatedMeshControls
     (
         {
             file "rocket.eMesh";
-            level 5;
+            level 6;
         }
     );
 
@@ -112,7 +112,7 @@ castellatedMeshControls
         rocket
         {
             // Surface-wise min and max refinement level
-            level (4 5);
+            level (5 6);
 
             // Optional specification of patch type (default is wall). No
             // constraint types (cyclic, symmetry) etc. are allowed.
@@ -175,7 +175,7 @@ snapControls
 {
     //- Number of patch smoothing iterations before finding correspondence
     //  to surface
-    nSmoothPatch 3;
+    nSmoothPatch 4;
 
     //- Relative distance for points to be attracted by surface feature point
     //  or edge. True distance is this factor times local
